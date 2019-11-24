@@ -6,20 +6,26 @@ const liveStudy = (preReports, name) => {
   if (preReports.hasOwnProperty('iReadTheInstructions')
     && preReports.iReadTheInstructions !== true) {
 
-    const div = document.createElement('div');
-    div.id = 'live-study';
-    div.appendChild(header);
+    const header = document.createElement('h2');
+    header.innerHTML = name ? name : 'Live Study';
 
     const rtfm = document.createElement('pre');
     rtfm.innerHTML = `
 ${(new Error('read the instructions, then set .iReadTheInstructions to true')).stack}`;
     rtfm.style.color = 'red';
+
+    const div = document.createElement('div');
+    div.id = 'live-study';
+    div.appendChild(header);
     div.appendChild(rtfm);
 
     div.appendChild(document.createElement('br'));
     div.appendChild(document.createElement('hr'));
     div.appendChild(document.createElement('hr'));
-    return div;
+
+    const toReturn = {};
+    toReturn.container = div;
+    return toReturn;
   }
 
 
