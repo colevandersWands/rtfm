@@ -2,6 +2,27 @@
 
 const liveStudy = (preReports, name) => {
 
+
+  if (preReports.hasOwnProperty('iReadTheInstructions')
+    && preReports.iReadTheInstructions !== true) {
+
+    const div = document.createElement('div');
+    div.id = 'live-study';
+    div.appendChild(header);
+
+    const rtfm = document.createElement('pre');
+    rtfm.innerHTML = `
+${(new Error('read the instructions, then set .iReadTheInstructions to true')).stack}`;
+    rtfm.style.color = 'red';
+    div.appendChild(rtfm);
+
+    div.appendChild(document.createElement('br'));
+    div.appendChild(document.createElement('hr'));
+    div.appendChild(document.createElement('hr'));
+    return div;
+  }
+
+
   // observe this
   let viewType = false;
   // true: sorted
@@ -246,21 +267,6 @@ const liveStudy = (preReports, name) => {
     const div = document.createElement('div');
     div.id = 'live-study';
     div.appendChild(header);
-
-    if (exercises.hasOwnProperty('iReadTheInstructions')
-      && exercises.iReadTheInstructions !== true) {
-
-      const rtfm = document.createElement('pre');
-      rtfm.innerHTML = `
-${(new Error('read the instructions, then set .iReadTheInstructions to true')).stack}`;
-      rtfm.style.color = 'red';
-      div.appendChild(rtfm);
-
-      div.appendChild(document.createElement('br'));
-      div.appendChild(document.createElement('hr'));
-      div.appendChild(document.createElement('hr'));
-      return div;
-    }
 
     div.appendChild(statsContainer);
     const summary = document.createElement('summary');
