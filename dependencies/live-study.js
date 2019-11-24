@@ -9,9 +9,13 @@ const liveStudy = (preReports, name) => {
     const header = document.createElement('h2');
     header.innerHTML = name ? name : 'Live Study';
 
+
+    const err = new Error('read the instructions, then set .iReadTheInstructions to true')
     const rtfm = document.createElement('pre');
     rtfm.innerHTML = `
-${(new Error('read the instructions, then set .iReadTheInstructions to true')).stack}`;
+${err.message}
+
+${err.stack}`;
     rtfm.style.color = 'red';
 
     const div = document.createElement('div');
